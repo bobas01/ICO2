@@ -194,6 +194,37 @@ table td {
     background-color: var(--secondary-color);
 }
 
+/* Cart */
+
+span.prix {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.img-responsive {
+    margin-bottom: 10px;
+    max-width: 100%;
+    height: auto;
+    max-height: 200px;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+#cart h3 {
+    color: #777;
+}
+
+#cart div {
+    margin-bottom: 5px;
+}
+
+.product-container {
+    margin-bottom: 30px;
+}
+
 /* Modal Styles */
 .modal {
     display: none; /* Masquer par défaut */

@@ -23,9 +23,9 @@
                 </a>
             </li>
         </ul>
-      
+
         <div class="icons">
-            <a href="index.php">
+            <a href="/ICO/panier">
                 <img src="./img/tresor.png" alt="" class="icon">
             </a>
             <div class="dropdown">
@@ -44,8 +44,7 @@
                         echo '<a href="logout.php">Déconnexion</a>';
                     } else {
                         echo '<a href="/ICO/inscription">Inscription</a>';
-echo '<a href="/ICO/login">Connexion</a>';
-
+                        echo '<a href="/ICO/login">Connexion</a>';
                     }
                     ?>
                 </div>
@@ -53,4 +52,3 @@ echo '<a href="/ICO/login">Connexion</a>';
         </div>
     </div>
 </nav>
-

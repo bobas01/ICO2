@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-session_start(); 
+session_start();
 
 require_once './vendor/altorouter/altorouter/AltoRouter.php';
 require_once './vendor/autoload.php';
@@ -90,9 +90,11 @@ $router->map('POST', '/posts/[i:id]/delete', 'PostController#delete', 'posts_del
 // Routes pour Login
 $router->map('GET|POST', '/login', 'LoginController#index', 'login');
 
-
 // Routes pour Register
 $router->map('POST', '/inscription', 'RegisterController#index', 'register');
+
+// Routes pour Cart
+$router->map('GET', '/panier', 'CartController#index', 'panier');
 
 $match = $router->match();
 
@@ -100,7 +102,7 @@ if (is_array($match)) {
     $controller = $match['target'];
     list($controllerName, $actionName) = explode('#', $controller);
     $controllerName = "\\App\\Controller\\" . $controllerName;
-    
+
     if (class_exists($controllerName)) {
         $controller = new $controllerName();
         if (method_exists($controller, $actionName)) {
