@@ -1,4 +1,3 @@
-
 <nav>
     <div class="container">
         <div class="logo-container">
@@ -24,24 +23,33 @@
                 </a>
             </li>
         </ul>
+      
         <div class="icons">
             <a href="index.php">
                 <img src="./img/tresor.png" alt="" class="icon">
             </a>
             <div class="dropdown">
                 <img src="./img/perroquet.png" alt="" class="icon dropbtn">
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <span class="notification-dot"></span>
+                <?php endif; ?>
                 <div class="dropdown-content">
                     <?php
-                    if(isset($_SESSION['user_id'])) {
+                    var_dump($_SESSION);
+                    if (isset($_SESSION['user_id'])) {
+                        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+                            echo '<a href="/ICO/backoffice">Back Office</a>';
+                        }
                         echo '<a href="profil.php">Mon Profil</a>';
                         echo '<a href="logout.php">Déconnexion</a>';
                     } else {
-                        echo '<a href="inscription">Inscription</a>';
-                        echo '<a href="login.php">Connexion</a>';
+                        echo '<a href="/ICO/inscription">Inscription</a>';
+echo '<a href="/ICO/login">Connexion</a>';
+
                     }
                     ?>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 </nav>

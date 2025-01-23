@@ -31,8 +31,10 @@ class RegisterController extends Controller
                 } else {
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                     if ($userModel->register($name, $email, $hashed_password, $phone)) {
-                        $success = "Inscription réussie !";
-                        header("Location: login.php");
+                        // Connexion automatique après l'inscription
+                        $user = $userModel->getUserByEmail($email); // Récupérer l'utilisateur
+                        $_SESSION['user_id'] = $user['Id']; // Établir la session
+                        header("Location: /ICO/"); // Rediriger vers la page d'accueil
                         exit();
                     } else {
                         $error = "Erreur lors de l'inscription.";

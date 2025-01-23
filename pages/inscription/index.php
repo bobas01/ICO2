@@ -11,20 +11,21 @@
         <?php endif; ?>
 
         <section class="login-container">
-            <form action="" method="post">
-                <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+            <form action="/ICO/inscription" method="post">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" name="username" id="username" required>
                 
-                <label for="emailAddress">Email</label>
-                <input id="emailAddress" type="email" name="email" placeholder="Votre email" required>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required>
                 
                 <label for="phone">Numéro de téléphone</label>
-                <input type="tel" id="phone" name="phone" placeholder="Votre numéro de téléphone" required>
+                <input type="tel" name="phone" id="phone" required>
 
                 <label for="password">Mot de passe</label>
-                <input type="password" name="password" id="password" placeholder="Votre mot de passe" required>
+                <input type="password" name="password" id="password" required>
                 
                 <label for="confirm_password">Confirmer le mot de passe</label>
-                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmez votre mot de passe" required>
+                <input type="password" name="confirm_password" id="confirm_password" required>
                 
                 <button type="submit">S'inscrire</button>
             </form>

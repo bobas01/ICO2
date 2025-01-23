@@ -16,7 +16,13 @@
             </div>
         </div>
     </section>
+    <?php
+    
+    var_dump($_POST['email']);
+    var_dump($_POST['password']);   
+    var_dump($_SESSION);
 
+?>  
     <!-- Conteneur 2 -->
     <section class="content-section">
         <div class="section reverse">

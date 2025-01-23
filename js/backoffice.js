@@ -44,58 +44,62 @@ document.addEventListener('DOMContentLoaded', () => {
     const bonusForm = document.getElementById('bonus-form');
     bonusForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        // Logique d'envoi des données (AJAX/Fetch)
-        const formData = {
-            id: document.getElementById('bonus-id').value,
-            name: document.getElementById('bonus-name').value,
-            description: document.getElementById('bonus-description').value
-        };
 
-        // Exemple de logique (à remplacer par votre logique backend)
-        console.log('Données du formulaire :', formData);
-        
-        // Fermer la modale
-        bonusForm.closest('.modal').style.display = 'none';
+        const formData = new FormData(bonusForm);
+
+        fetch(bonusForm.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            console.log('Response:', response); // Log de la réponse brute
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text(); // Récupérer la réponse en tant que texte
+        })
+        .then(text => {
+            if (!text) {
+                throw new Error('Empty response');
+            }
+            const data = JSON.parse(text); // Convertir le texte en JSON
+            const messageDiv = document.getElementById('modal-message');
+            messageDiv.style.display = 'block';
+            messageDiv.textContent = data.message;
+
+            if (data.success) {
+                // Afficher un toast de succès
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                    bonusForm.reset(); // Réinitialiser le formulaire
+                    document.getElementById('bonus-modal').style.display = 'none'; // Fermer la modale
+                }, 2000);
+            } else {
+                // Afficher le message d'erreur dans la modale
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000); // Masquer le message après 5 secondes
+            }
+        })
+        .catch(error => {
+            console.error('Erreur:', error);
+        });
     });
 
     // Fonction pour charger les données (à implémenter avec votre backend)
-    function loadData(type) {
-        // Exemple de chargement de données
-        fetch(`/api/${type}`)
-            .then(response => response.json())
-            .then(data => {
-                // Remplir le tableau correspondant
-                const list = document.getElementById(`${type}-list`);
-                list.innerHTML = ''; // Vider la liste existante
-                
-                data.forEach(item => {
-                    const row = `
-                        <tr>
-                            <td>${item.id}</td>
-                            <td>${item.name}</td>
-                            <td>${item.description}</td>
-                            <td>
-                                <button class="btn-update" onclick="editItem('${type}', ${item.id})">✏️</button>
-                                <button class="btn-delete" onclick="deleteItem('${type}', ${item.id})">🗑️</button>
-                            </td>
-                        </tr>
-                    `;
-                    list.innerHTML += row;
-                });
-            });
-    }
+    
 
-    // Fonctions d'édition et de suppression (à personnaliser)
-    window.editItem = (type, id) => {
-        // Logique d'édition
-        console.log(`Éditer ${type} ${id}`);
-    };
-
-    window.deleteItem = (type, id) => {
-        // Logique de suppression
-        console.log(`Supprimer ${type} ${id}`);
-    };
 
     // Charger les données de la première section par défaut
-    loadData('bonus');
+    
 });
+
+function openUpdateModal(cardId, title, rules) {
+    document.getElementById('update-title').value = title;
+    document.getElementById('update-rules').value = rules;
+    document.getElementById('update-modal').style.display = 'block'; // Ouvrir la modale
+}
+
+function closeUpdateModal() {
+    document.getElementById('update-modal').style.display = 'none'; // Fermer la modale
+}

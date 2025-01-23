@@ -1,5 +1,9 @@
 <?php
-session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+session_start(); 
 
 require_once './vendor/altorouter/altorouter/AltoRouter.php';
 require_once './vendor/autoload.php';
@@ -11,6 +15,8 @@ require_once './controller/MaterialController.php';
 require_once './controller/MessageController.php';
 require_once './controller/PostController.php';
 require_once './controller/BackofficeController.php';
+require_once './controller/LoginController.php';
+require_once './controller/RegisterController.php';
 $router = new AltoRouter();
 
 $router->setBasePath('/ICO');
@@ -33,10 +39,11 @@ $router->map('GET', '/inscription', 'InscriptionController#index', 'inscription'
 
 // Routes pour Card
 $router->map('GET', '/cards', 'CardController#getAll', 'cards_list');
-$router->map('POST', '/cards/create', 'CardController#create', 'cards_create');
+$router->map('POST', '/cards/create', 'CardController#createCard', 'cards_create');
 $router->map('GET', '/cards/[i:id]', 'CardController#read', 'cards_read');
-$router->map('POST', '/cards/[i:id]/update', 'CardController#update', 'cards_update');
+
 $router->map('POST', '/cards/[i:id]/delete', 'CardController#delete', 'cards_delete');
+$router->map('POST', '/cards/update/[i:id]', 'CardController#updateCard', 'cards_update');
 
 // Routes pour CardsDistribution
 $router->map('GET', '/cards-distribution', 'CardsDistributionController#getAll', 'cards_distribution_list');
@@ -79,6 +86,13 @@ $router->map('POST', '/posts/create', 'PostController#create', 'posts_create');
 $router->map('GET', '/posts/[i:id]', 'PostController#read', 'posts_read');
 $router->map('POST', '/posts/[i:id]/update', 'PostController#update', 'posts_update');
 $router->map('POST', '/posts/[i:id]/delete', 'PostController#delete', 'posts_delete');
+
+// Routes pour Login
+$router->map('GET|POST', '/login', 'LoginController#index', 'login');
+
+
+// Routes pour Register
+$router->map('POST', '/inscription', 'RegisterController#index', 'register');
 
 $match = $router->match();
 

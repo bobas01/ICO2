@@ -798,6 +798,16 @@ nav ul li a {
   width: 48px;
   height: auto;
 }
+
+.notification-dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background-color: red; /* Couleur du point */
+  border-radius: 50%; /* Forme ronde */
+}
 .dropdown{
   position: relative;
 }
