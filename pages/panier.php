@@ -40,7 +40,7 @@
 <div class="container mt-5">
     <div class="card shadow-sm border-0">
         <div class="card-header btn-violet d-flex justify-content-between align-items-center">
-            <h3 class="mb-0">Mon Panier</h3>
+            <p class="mb-0 h2">Mon Panier</p>
             <span class="badge badge-violet"><?= count($cartProducts) ?> article(s)</span>
         </div>
         <div class="card-body">
@@ -109,9 +109,9 @@
                     <div class="card-body cart-total-card">
                         <div class="d-flex justify-content-between align-items-center">
                             <h4 class="mb-0">Total de la commande</h4>
-                            <h3 class="mb-0">
+                            <p class="mb-0 h2">
                                 <?= number_format($cartTotal, 2, ',', ' ') ?> €
-                            </h3>
+                            </p>
                         </div>
                         <div class="mt-3">
                             <button class="btn btn-violet btn-lg w-100">

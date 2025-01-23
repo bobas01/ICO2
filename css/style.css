@@ -282,10 +282,27 @@ header {
 }
 
 h1 {
-  font-size: 4em;
-  text-transform: uppercase;
+  font-size: 2.4em;
   text-align: center;
-  color: #fff;
+  color: #432567;
+  font-family: 'DynaPuff', sans-serif;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 2.2em;
+  text-align: center;
+  color: #432567;
+  font-family: 'DynaPuff', sans-serif;
+  font-weight: semi-bold;
+}
+
+h3 {
+  font-size: 2em;
+  text-align: center;
+  color: #432567;
+  font-family: 'DynaPuff', sans-serif;
+  font-weight: semi-bold;
 }
 
 /* Global Styles */

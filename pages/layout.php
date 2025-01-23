@@ -25,6 +25,12 @@
 
     <?php endif; ?>
 
+    <?php
+    if ($currentPage === 'rules'):
+        include('Include/rules-nav.php');
+    endif;
+    ?>
+
 
     <div class="content-container"><?= $content ?? '' ?></div>
 
